@@ -1,8 +1,8 @@
 package ca.javateacher.loancalculator.model;
 
-import javax.validation.constraints.Positive;
+import java.io.Serializable;
 
-public class LoanForm {
+public class LoanForm implements Serializable {
 
     private String annualInterestRate="";
     private String numberOfYears="";

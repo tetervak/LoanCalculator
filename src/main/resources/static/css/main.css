@@ -53,13 +53,6 @@ h3.error, li.error{
     color:crimson;
 }
 
-p.message{
-    margin-left: 1em;
-    font-weight: bolder;
-    font-style: oblique;
-    color: darkorange;
-}
-
 span.output{
     font-weight: bolder;
     font-style: italic;

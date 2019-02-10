@@ -17,7 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class LoanCalcController {
 
-    private Logger logger = LoggerFactory.getLogger(LoanCalcController.class);
+    private final Logger logger = LoggerFactory.getLogger(LoanCalcController.class);
 
     @InitBinder
     protected void initBinder(WebDataBinder binder) {

@@ -1,6 +1,5 @@
 package ca.javateacher.loancalculator.validator;
 
-import ca.javateacher.loancalculator.controller.LoanCalcController;
 import ca.javateacher.loancalculator.model.LoanForm;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,7 +8,7 @@ import org.springframework.validation.Validator;
 
 public class LoanFormValidator implements Validator {
 
-    private Logger logger = LoggerFactory.getLogger(LoanFormValidator.class);
+    private final Logger logger = LoggerFactory.getLogger(LoanFormValidator.class);
 
     @Override
     public boolean supports(Class<?> type) {

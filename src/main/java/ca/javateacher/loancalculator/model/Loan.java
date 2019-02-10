@@ -1,6 +1,8 @@
 package ca.javateacher.loancalculator.model;
 
-public class Loan {
+import java.io.Serializable;
+
+public class Loan implements Serializable {
 
     private double annualInterestRate;
     private int numberOfYears;
@@ -55,14 +57,11 @@ public class Loan {
 
     public double getMonthlyPayment() {
         double monthlyInterestRate = annualInterestRate / 1200;
-        double monthlyPayment =
-                loanAmount * monthlyInterestRate / (1 -
-                        (Math.pow(1 / (1 + monthlyInterestRate), numberOfYears * 12)));
-        return monthlyPayment;
+        return loanAmount * monthlyInterestRate /
+                (1 - (Math.pow(1 / (1 + monthlyInterestRate), numberOfYears * 12)));
     }
 
     public double getTotalPayment() {
-        double totalPayment = getMonthlyPayment() * numberOfYears * 12;
-        return totalPayment;
+        return getMonthlyPayment() * numberOfYears * 12;
     }
 }
