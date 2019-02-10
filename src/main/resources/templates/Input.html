@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <!-- Alex Tetervak, Sheridan College, Ontario -->
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/main.css">
+    <link th:href="@{css/normalize.css}" href="../static/css/normalize.css" rel="stylesheet" type="text/css"/>
+    <link th:href="@{css/main.css}" href="../static/css/main.css" rel="stylesheet" type="text/css"/>
     <title>Input</title>
 </head>
 <body>
 <main>
     <h1>Input Loan Data</h1>
-    <form method="get" action="Calculate.do">
+    <form method="get" th:action="@{Calculate.do}" action="Output.html">
         <p>
             <label for="amount">Loan Amount</label>
             <input id="amount" type="text" name="loanAmount" size="10">

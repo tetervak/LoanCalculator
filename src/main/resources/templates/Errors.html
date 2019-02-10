@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Errors</title>
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/main.css">
+    <link th:href="@{css/normalize.css}" href="../static/css/normalize.css" rel="stylesheet" type="text/css"/>
+    <link th:href="@{css/main.css}" href="../static/css/main.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <main>
@@ -14,7 +14,7 @@
         <li class="error" th:each="e: ${errors}" th:text="${e}">Invalid input</li>
     </ul>
     <p>
-        <a href="Input.do">Back to inputs</a>
+        <a th:href="@{Input.do}" href="Input.do">Back to inputs</a>
     </p>
 </main>
 </body>

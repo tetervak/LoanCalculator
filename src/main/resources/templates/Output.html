@@ -3,8 +3,8 @@
 <!--/*@thymesVar id="loan" type="ca.javateacher.loancalculator.model.Loan"*/-->
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/main.css">
+    <link th:href="@{css/normalize.css}" href="../static/css/normalize.css" rel="stylesheet" type="text/css"/>
+    <link th:href="@{css/main.css}" href="../static/css/main.css" rel="stylesheet" type="text/css"/>
     <title>Output</title>
 </head>
 <body>
@@ -36,7 +36,7 @@
               th:text="${#numbers.formatDecimal(loan.totalPayment -loan.loanAmount,1,2,'POINT')}">87.53</span>
     </p>
     <p>
-        <a href="Input.do">Back to inputs</a>
+        <a th:href="@{Input.do}" href="Input.do">Back to inputs</a>
     </p>
 </main>
 </body>
