@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--/*@thymesVar id="errors" type="java.util.ArrayList<java.lang.String>"*/-->
+<head>
+    <meta charset="UTF-8">
+    <title>Errors</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<main>
+    <h1>Input Errors</h1>
+    <ul>
+        <li class="error" th:each="e: ${errors}" th:text="${e}">Invalid input</li>
+    </ul>
+    <p>
+        <a href="Input.do">Back to inputs</a>
+    </p>
+</main>
+</body>
+</html>
