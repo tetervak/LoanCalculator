@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <!-- Alex Tetervak, Sheridan College, Ontario -->
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--/*@thymesVar id="form" type="ca.javateacher.loancalculator.model.LoanForm"*/-->
+<!--/*@thymesVar id="errors" type="java.util.ArrayList<java.lang.String>"*/-->
 <head>
     <meta charset="UTF-8">
     <link th:href="@{css/normalize.css}" href="../static/css/normalize.css" rel="stylesheet" type="text/css"/>
@@ -10,18 +12,27 @@
 <body>
 <main>
     <h1>Input Loan Data</h1>
-    <form method="get" th:action="@{Calculate.do}" action="Output.html">
+    <div th:if="${not #lists.isEmpty(errors)}">
+        <h3 class="error">Input Errors</h3>
+        <ul>
+            <li class="error" th:each="e: ${errors}" th:text="${e}">Error</li>
+        </ul>
+        <h3>Input Data</h3>
+    </div>
+    <form method="get"
+          th:action="@{Calculate.do}" action="Output.html"
+          th:object="${form}">
         <p>
             <label for="amount">Loan Amount</label>
-            <input id="amount" type="text" name="loanAmount" size="10">
+            <input id="amount" type="text" th:field="*{loanAmount}" size="10">
         </p>
         <p>
             <label for="rate">Annual Interest</label>
-            <input id="rate" type="text" name="annualInterestRate" size="10">
+            <input id="rate" type="text" th:field="*{annualInterestRate}" size="10">
         </p>
         <p>
             <label for="years">Number of Years</label>
-            <input id="years" type="text" name="numberOfYears" size="10">
+            <input id="years" type="text" th:field="*{numberOfYears}" size="10">
         </p>
         <p>
             <label>&nbsp;</label><input type="submit" value="Calculate">

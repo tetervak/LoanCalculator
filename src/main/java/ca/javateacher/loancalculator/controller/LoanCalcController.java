@@ -4,32 +4,23 @@ import ca.javateacher.loancalculator.model.Loan;
 import ca.javateacher.loancalculator.model.LoanForm;
 import ca.javateacher.loancalculator.model.LoanFormValidator;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 
 @Controller
 public class LoanCalcController {
 
     @RequestMapping(value={"/","/Input.do"})
-    public static String input(){
-        return "Input";
+    public static ModelAndView input(){
+        // make the object available to the Input page and show the page
+        return new ModelAndView("Input","form", new LoanForm());
     }
 
     @RequestMapping("/Calculate.do")
-    public static String calculate(HttpServletRequest request){
-
-        // get the input values
-        String strAmount = request.getParameter("loanAmount").trim();
-        String strRate = request.getParameter("annualInterestRate").trim();
-        String strYears = request.getParameter("numberOfYears").trim();
-
-        // put the input values into the object
-        LoanForm form = new LoanForm();
-        form.setLoanAmount(strAmount);
-        form.setAnnualInterestRate(strRate);
-        form.setNumberOfYears(strYears);
+    public static ModelAndView calculate(@ModelAttribute(name="form") LoanForm form){
 
         // validate the data inside of the object
         ArrayList<String> errors = LoanFormValidator.validate(form);
@@ -38,26 +29,21 @@ public class LoanCalcController {
         if (errors.isEmpty()) {
             // if no errors, the input data is valid
             // convert the data into numbers for the calculation
-            double amount = Double.parseDouble(strAmount);
-            double rate = Double.parseDouble(strRate);
-            int years = Integer.parseInt(strYears);
-
             // put the numbers in the object for the calculation
             Loan loan = new Loan();
-            loan.setLoanAmount(amount);
-            loan.setAnnualInterestRate(rate);
-            loan.setNumberOfYears(years);
+            loan.setLoanAmount(Double.parseDouble(form.getLoanAmount()));
+            loan.setAnnualInterestRate(Double.parseDouble(form.getAnnualInterestRate()));
+            loan.setNumberOfYears(Integer.parseInt(form.getNumberOfYears()));
 
-            // make the calculating object available to the output page
-            request.setAttribute("loan", loan);
-
-            // show the calculation output page
-            return "Output";
+            // make the object available to the Output page and show the page
+            return new ModelAndView("Output", "loan", loan);
         } else {
-            // if we got input errors
-            // make the error list available to the error output page
-            request.setAttribute("errors", errors);
-            return "Errors";
+            // if we got input errors, we are going back to the Input page
+            // insert the previous user inputs into the Input page
+            ModelAndView modelAndView = new ModelAndView("Input", "form" , form);
+            // show the input error list on the Input page
+            modelAndView.addObject("errors", errors);
+            return modelAndView;
         }
     }
 
