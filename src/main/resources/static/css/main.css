@@ -50,7 +50,7 @@ p.error{
 }
 
 h3.error, li.error{
-    color:brown;
+    color:crimson;
 }
 
 p.message{

@@ -1,10 +1,15 @@
 package ca.javateacher.loancalculator.validator;
 
+import ca.javateacher.loancalculator.controller.LoanCalcController;
 import ca.javateacher.loancalculator.model.LoanForm;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 public class LoanFormValidator implements Validator {
+
+    private Logger logger = LoggerFactory.getLogger(LoanFormValidator.class);
 
     @Override
     public boolean supports(Class<?> type) {
@@ -13,9 +18,8 @@ public class LoanFormValidator implements Validator {
 
     @Override
     public void validate(Object obj, Errors errors) {
-
+        logger.trace("The validator is called to validate.");
         LoanForm form = (LoanForm) obj;
-
         if (form.getLoanAmount().trim().isEmpty()) {
             errors.rejectValue("loanAmount", "NotBlank.form.loanAmount");
         } else {
