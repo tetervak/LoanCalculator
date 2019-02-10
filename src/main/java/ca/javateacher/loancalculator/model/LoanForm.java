@@ -1,5 +1,7 @@
 package ca.javateacher.loancalculator.model;
 
+import javax.validation.constraints.Positive;
+
 public class LoanForm {
 
     private String annualInterestRate="";

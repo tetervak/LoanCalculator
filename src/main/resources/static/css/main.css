@@ -43,10 +43,14 @@ h3{
     color: green;
 }
 
-li.error{
+p.error{
+    margin-top: 2em;
     color:red;
-    font-weight: bolder;
     font-style: oblique;
+}
+
+h3.error, li.error{
+    color:brown;
 }
 
 p.message{

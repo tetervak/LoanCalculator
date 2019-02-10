@@ -2,16 +2,24 @@ package ca.javateacher.loancalculator.controller;
 
 import ca.javateacher.loancalculator.model.Loan;
 import ca.javateacher.loancalculator.model.LoanForm;
-import ca.javateacher.loancalculator.model.LoanFormValidator;
+import ca.javateacher.loancalculator.validator.LoanFormValidator;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
-
 @Controller
 public class LoanCalcController {
+
+    @InitBinder
+    protected void initBinder(WebDataBinder binder) {
+        if(binder.getObjectName().equals("form"))
+            binder.setValidator(new LoanFormValidator());
+    }
 
     @RequestMapping(value={"/","/Input.do"})
     public static ModelAndView input(){
@@ -20,13 +28,12 @@ public class LoanCalcController {
     }
 
     @RequestMapping("/Calculate.do")
-    public static ModelAndView calculate(@ModelAttribute(name="form") LoanForm form){
-
-        // validate the data inside of the object
-        ArrayList<String> errors = LoanFormValidator.validate(form);
+    public static ModelAndView calculate(
+            @Validated @ModelAttribute(name="form") LoanForm form,
+            BindingResult bindingResult){
 
         // check the validation errors
-        if (errors.isEmpty()) {
+        if (!bindingResult.hasErrors()) {
             // if no errors, the input data is valid
             // convert the data into numbers for the calculation
             // put the numbers in the object for the calculation
@@ -40,10 +47,8 @@ public class LoanCalcController {
         } else {
             // if we got input errors, we are going back to the Input page
             // insert the previous user inputs into the Input page
-            ModelAndView modelAndView = new ModelAndView("Input", "form" , form);
-            // show the input error list on the Input page
-            modelAndView.addObject("errors", errors);
-            return modelAndView;
+            // the errors are already included
+            return new ModelAndView("Input", "form" , form);
         }
     }
 
