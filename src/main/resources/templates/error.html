@@ -7,9 +7,12 @@
 <!--/*@thymesVar id="message" type="java.lang.String"*/-->
 <head>
     <meta charset="UTF-8">
-    <link th:href="@{/css/normalize.css}" href="../static/css/normalize.css" rel="stylesheet" type="text/css"/>
-    <link th:href="@{/css/main.css}" href="../static/css/main.css" rel="stylesheet" type="text/css"/>
-    <link th:href="@{/css/error.css}" href="../static/css/error.css" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/normalize.css}" href="../static/css/normalize.css"
+          rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/main.css}" href="../static/css/main.css"
+          rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/error.css}" href="../static/css/error.css"
+          rel="stylesheet" type="text/css"/>
     <title>Error</title>
 </head>
 <body>
@@ -38,6 +41,9 @@
             <td th:text="${message}">No message available</td>
         </tr>
     </table>
+    <p>
+        <a th:href="@{/Input.do}" href="Input.html">Back to inputs</a>
+    </p>
 </main>
 </body>
 </html>
