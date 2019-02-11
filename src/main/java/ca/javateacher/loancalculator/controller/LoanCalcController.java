@@ -19,9 +19,8 @@ public class LoanCalcController {
 
     private final Logger logger = LoggerFactory.getLogger(LoanCalcController.class);
 
-    @InitBinder
+    @InitBinder("form")
     protected void initBinder(WebDataBinder binder) {
-        if(binder.getObjectName().equals("form"))
             binder.setValidator(new LoanFormValidator());
     }
 

@@ -3,6 +3,7 @@ package ca.javateacher.loancalculator.validator;
 import ca.javateacher.loancalculator.model.LoanForm;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
