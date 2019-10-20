@@ -23,7 +23,7 @@
         </div>
 
         <p th:if="${#fields.hasErrors('loanAmount')}" th:errors="*{loanAmount}"
-           class="error">Amount Imput Error</p>
+           class="error">Amount Input Error</p>
         <p><label for="amount">Loan Amount</label>
             <input id="amount" type="text" th:field="*{loanAmount}" size="10"></p>
 
