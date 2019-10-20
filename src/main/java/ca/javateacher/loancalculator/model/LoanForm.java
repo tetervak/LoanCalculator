@@ -2,6 +2,7 @@ package ca.javateacher.loancalculator.model;
 
 import java.io.Serializable;
 
+@SuppressWarnings("ALL")
 public class LoanForm implements Serializable {
 
     private String annualInterestRate="";

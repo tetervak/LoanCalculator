@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
+@SuppressWarnings("unused")
 public class LoanFormValidator implements Validator {
 
     private final Logger logger = LoggerFactory.getLogger(LoanFormValidator.class);

@@ -2,6 +2,7 @@ package ca.javateacher.loancalculator.model;
 
 import java.io.Serializable;
 
+@SuppressWarnings("WeakerAccess")
 public class Loan implements Serializable {
 
     private double annualInterestRate;
