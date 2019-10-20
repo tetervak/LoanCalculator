@@ -39,7 +39,13 @@ public class LoanCalcController {
 
         logger.trace("Received a user input.");
         // check the validation errors
-        if (!bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors()) {
+            logger.trace("The received data is invalid, going back to the inputs.");
+            // if we got input errors, we are going back to the Input page
+            // insert the previous user inputs into the Input page
+            // the errors are already included
+            return new ModelAndView("Input", "form" , form);
+        } else {
             logger.trace("The input data is valid.");
             // if no errors, the input data is valid
             // convert the data into numbers for the calculation
@@ -51,12 +57,6 @@ public class LoanCalcController {
             logger.trace("Showing the output page.");
             // make the object available to the Output page and show the page
             return new ModelAndView("Output", "loan", loan);
-        } else {
-            logger.trace("The received data is invalid, going back to the inputs.");
-            // if we got input errors, we are going back to the Input page
-            // insert the previous user inputs into the Input page
-            // the errors are already included
-            return new ModelAndView("Input", "form" , form);
         }
     }
 
